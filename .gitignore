@@ -1,0 +1,23 @@
+# Compiled python files
+# *.py[oc]
+
+# Virtual environment files
+dpv-env/*
+
+# gedit files
+*~
+
+# Notepad++ files
+nppBackup/
+
+# Pytest dirs/files
+.pytest_cache/
+
+# git .orig files
+*.orig
+
+# log files
+*.log
+
+# Pylint dirs/files
+.pylint.d/
