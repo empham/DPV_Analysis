@@ -1,8 +1,8 @@
-# Compiled python files
-# *.py[oc]
+# Spyder project files
+.spyproject/
 
 # Virtual environment files
-dpv-env/*
+dpv-env/
 
 # gedit files
 *~
