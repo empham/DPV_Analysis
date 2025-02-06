@@ -9,9 +9,30 @@ Created on Wed Feb  5 14:35:03 2025
 import numpy as np
 import matplotlib.pyplot as plt
 
-from scipy.optimize import curve_fit
+# from scipy.optimize import curve_fit
 from get_data_from_TSV import *
+
+
+def fit_linear_drift(dpvDF):
+    """
+    Given DPV data fits a line to linear drift in signal.
+
+    INPUT: dpv data as a numpy array
+    DOES: fits a line to the linear drift
+    OUTPUT: optimal line parameters and normalized data
+    """
+    # Separate data and convert data type
+    to_float = np.vectorize(float)
+    V_fwd = to_float(dpvDF[2:-1, 1])
+    I_diff = to_float(dpvDF[2:-1, 2])
+    # Plot raw data
+    plt.scatter(V_fwd, I_diff)
+    plt.show()
+    return dpvDF  # @todo
+
 
 if __name__ == '__main__':
     dpvDF_lst = get_data_from_TSV()
-    print(dpvDF_lst)
+
+    for dpvDF in dpvDF_lst:
+        linear_fit = fit_linear_drift(dpvDF)
