@@ -39,7 +39,6 @@ def get_data_from_TSV():
     DATA_DIR = "C:\\Users\\Public\\My Gamry Data\\" + dataFolder
 
     dataFiles = [string for string in os.listdir(DATA_DIR) if "DPV" in string]
-    print(dataFiles)
 
     # Open the .DTA files and grab values
     dpvDF_lst = []
