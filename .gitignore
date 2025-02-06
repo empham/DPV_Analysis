@@ -21,3 +21,6 @@ nppBackup/
 
 # Pylint dirs/files
 .pylint.d/
+
+# Python cache
+__pycache__/
