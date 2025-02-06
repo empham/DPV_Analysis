@@ -19,30 +19,43 @@ def homogenize_2d_list(lst, pad_value=0):
     OUTPUT: homogenous 2D array
     """
     longest_len = len(max(lst, key=len))
-    padded_lst = [(line + [pad_value] * longest_len)[:longest_len] for line in lst]
+    padded_lst = [(line + [pad_value] * longest_len)[:longest_len]
+                  for line in lst]
     return padded_lst
 
 
-CWD = os.getcwd() + '\\'
+def get_data_from_TSV():
+    """
+    Extract target data from Gamry default TSV.
 
-dataFolder = "01-29-2025"  # For DEBUG @todo
-# dataFolder = input("Enter the name of the folder with the target data: ")
-DATA_DIR = "C:\\Users\\Public\\My Gamry Data\\" + dataFolder
+    INPUT: nothing
+    DOES: extracts target data from each TSV and saves as numpy 2D array
+    OUTPUT: list of numpy 2D arrays with target data
+    """
+    # CWD = os.getcwd() + '\\'
 
-dataFiles = [string for string in os.listdir(DATA_DIR) if "DPV" in string]
-print(dataFiles)
+    dataFolder = "01-29-2025"  # For DEBUG @todo
+    # dataFolder = input("Enter the name of the folder with the target data: ")
+    DATA_DIR = "C:\\Users\\Public\\My Gamry Data\\" + dataFolder
+
+    dataFiles = [string for string in os.listdir(DATA_DIR) if "DPV" in string]
+    print(dataFiles)
+
+    # Open the .DTA files and grab values
+    dpvDF_lst = []
+    for file in dataFiles:
+        with open(DATA_DIR+"\\"+file, "r") as df:
+            contents = df.read().split('\n')
+            rawDF = [line.split('\t') for line in contents]
+            # Extract X (V_fwd) and Y (I_diff) values
+            rawDF = homogenize_2d_list(rawDF, ' ')
+            RawDF = np.array(rawDF)
+            dpvDF = RawDF[64:, [1, 3, 8]]
+            dpvDF_lst.append(dpvDF)
+
+    return dpvDF_lst
 
 
-# Open the .DTA files and grab values
-dpvDF_lst = []
-for file in dataFiles:
-    with open(DATA_DIR+"\\"+file, "r") as df:
-        contents = df.read().split('\n')
-        rawDF = [line.split('\t') for line in contents]
-        # Extract X (V_fwd) and Y (I_diff) values
-        rawDF = homogenize_2d_list(rawDF, ' ')
-        RawDF = np.array(rawDF)
-        dpvDF = RawDF[64:, [1, 3, 8]]
-        dpvDF_lst.append(RawDF)
-
-print(len(dpvDF_lst))
+if __name__ == '__main__':
+    lst = get_data_from_TSV()
+    print(lst)
