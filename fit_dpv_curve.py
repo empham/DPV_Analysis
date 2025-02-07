@@ -34,10 +34,12 @@ def fit_linear_drift(dpvDF):
     I_diff = to_float(dpvDF[2:-1, 2])
 
     # Get coordinates of linear regions
-    start1, end1 = get_2_points_from_plot(V_fwd, I_diff)
-    start2, end2 = get_2_points_from_plot(V_fwd, I_diff)
-    print(f"DEBUG: start1={start1} end1={end1}")
-    print(f"DEBUG: start2={start2} end2={end2}")
+    coords1 = get_2_points_from_plot(V_fwd, I_diff)
+    coords2 = get_2_points_from_plot(V_fwd, I_diff)
+
+    # Change user's inputted coordinates to vector indicies
+    c_indicies1 = [find_nearest_index(coord[0], V_fwd) for coord in coords1]
+    c_indicies2 = [find_nearest_index(coord[0], V_fwd) for coord in coords2]
     
 # =============================================================================
 #     # Extract linear regions
