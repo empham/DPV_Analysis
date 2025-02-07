@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 
 # from scipy.optimize import curve_fit
 from get_data_from_TSV import *
+from get_XY_from_plot import *
 
 
 def fit_linear_drift(dpvDF):
@@ -25,9 +26,8 @@ def fit_linear_drift(dpvDF):
     to_float = np.vectorize(float)
     V_fwd = to_float(dpvDF[2:-1, 1])
     I_diff = to_float(dpvDF[2:-1, 2])
-    # Plot raw data
-    plt.scatter(V_fwd, I_diff)
-    plt.show()
+    # Plot original data
+    get_XY_from_plot(V_fwd, I_diff)
     return dpvDF  # @todo
 
 
