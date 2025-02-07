@@ -2,7 +2,7 @@
 """
 Created on Wed Feb  5 15:59:35 2025
 
-@filename: get_2_points_from_plot.py
+@filename: fit_utils.py
 @author: Emily
 """
 
