@@ -10,18 +10,18 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def order_points(pointA, pointB):
+def reverse_order_points(pointA, pointB):
     """
-    Given two sets of  (X,Y) points returns them from smallest to largest.
+    Given two sets of  (X,Y) points returns them from largest to smallest.
 
     INPUT: 2 tuples (points)
-    DOES: orders them from smallest to largest value
+    DOES: orders them from largest to smallest value
     OUTPUT: points in order
     """
     if pointA[0] < pointB[0]:
-        return (pointA, pointB)
-    else:
         return (pointB, pointA)
+    else:
+        return (pointA, pointB)
 
 
 def get_2_points_from_plot(X_data, Y_data):
@@ -43,7 +43,7 @@ def get_2_points_from_plot(X_data, Y_data):
     print("Click on the plot to select points...")
 
     clicked_points = plt.ginput(2, show_clicks=True)
-    start, end = order_points(clicked_points[0], clicked_points[1])
+    start, end = reverse_order_points(clicked_points[0], clicked_points[1])
     # print(f"DEBUG: start={start} end={end}")
 
     plt.close()  # Close the plot after selection
