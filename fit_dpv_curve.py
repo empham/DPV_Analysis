@@ -42,7 +42,6 @@ def fit_linear_drift(dpvDF):
     c_indices2 = [find_nearest_index(coord[0], V_fwd) for coord in coords2]
 
     # Extract "linear" regions
-    print(f"{c_indices1[0][0]} : {c_indices1[1][0]}")
     X1 = V_fwd[c_indices1[0][0] : c_indices1[1][0]]
     X2 = V_fwd[c_indices2[0][0] : c_indices2[1][0]]
     x_lin = np.concatenate((X1, X2))
