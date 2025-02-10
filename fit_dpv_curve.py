@@ -77,7 +77,8 @@ def fit_linear_drift(dpvDF):
 
     return popt, np.array((m_error, b_error))
 
-
+def fit_DPV_signal():
+    
 if __name__ == '__main__':
     dpvDF_lst = get_data_from_TSV()
 
