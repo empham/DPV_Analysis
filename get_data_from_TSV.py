@@ -9,6 +9,9 @@ Created on Mon Feb  3 10:47:12 2025
 import os
 import numpy as np
 
+from os_utils import select_dir
+from os_utils import find_dir
+
 
 def homogenize_2d_list(lst, pad_value=0):
     """
@@ -32,11 +35,11 @@ def get_data_from_TSV():
     DOES: extracts target data from each TSV and saves as numpy 2D array
     OUTPUT: list of numpy 2D arrays with target data
     """
-    # CWD = os.getcwd() + '\\'
+    GAMRY_DEFAULT = find_dir('My Gamry Data', 'C:\\')
+    print(f"Hint: the default Gamry data directory is '{GAMRY_DEFAULT}'\n")
 
-    dataFolder = "01-29-2025"  # For DEBUG @todo
-    # dataFolder = input("Enter the name of the folder with the target data: ")
-    DATA_DIR = "C:\\Users\\Public\\My Gamry Data\\" + dataFolder
+    DATA_DIR = select_dir(prompt="Enter the path to the directory containing the target data (or press Enter for default './output'): ")
+
 
     dataFiles = [string for string in os.listdir(DATA_DIR) if "DPV" in string]
 
@@ -57,4 +60,4 @@ def get_data_from_TSV():
 
 if __name__ == '__main__':
     lst = get_data_from_TSV()
-    print(lst)
+    print(len(lst))
