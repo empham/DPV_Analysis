@@ -42,7 +42,19 @@ def get_2_points_from_plot(X_data, Y_data):
     plt.show(block=False)
     print("Click on the plot to select points...")
 
-    clicked_points = plt.ginput(2, show_clicks=True)
+    try:
+        clicked_points = plt.ginput(2, timeout=20, show_clicks=True)
+    except Exception:
+        print("Error: Plot was closed before selecting points.")
+        plt.close()
+        return ()
+
+    # If the user closes the plot or doesn't select enough points
+    if len(clicked_points) < 2:
+        print("Error: Not enough points selected.")
+        plt.close()
+        return ()
+
     start, end = reverse_order_points(clicked_points[0], clicked_points[1])
     # print(f"DEBUG: start={start} end={end}")
 
