@@ -66,18 +66,20 @@ def fit_linear_drift(dpvDF):
     m_opt, b_opt = popt  # Extract the optimized parameters
 
     # Plot results
-    x_fit = np.linspace(min(V_fwd), max(V_fwd), 100)
-    y_fit = linear_func(x_fit, m_opt, b_opt)
-    fig = plt.figure()
-    plt.scatter(V_fwd, I_diff, label='Measured Data')
-    plt.plot(x_fit, y_fit, label=f'Fit: y = {m_opt:e}x + {b_opt:e}', color='red')
-    plt.xlabel('V_fwd')
-    plt.ylabel('I_diff')
-    plt.legend()
-    plt.title('Linear Curve Fitting')
-    plt.grid(True)
-    plt.show(block=True)
-    plt.close(fig)
+# =============================================================================
+#     x_fit = np.linspace(min(V_fwd), max(V_fwd), 100)
+#     y_fit = linear_func(x_fit, m_opt, b_opt)
+#     fig = plt.figure()
+#     plt.scatter(V_fwd, I_diff, label='Measured Data')
+#     plt.plot(x_fit, y_fit, label=f'Fit: y = {m_opt:e}x + {b_opt:e}', color='red')
+#     plt.xlabel('V_fwd')
+#     plt.ylabel('I_diff')
+#     plt.legend()
+#     plt.title('Linear Curve Fitting')
+#     plt.grid(True)
+#     plt.show(block=True)
+#     plt.close(fig)
+# =============================================================================
 
     # Print the optimized parameters and their uncertainties
     m_error = float(np.sqrt(pcov[0, 0]))
@@ -117,18 +119,20 @@ def fit_DPV_signal(dpvDF):
     A_opt, mu_opt, sigma_opt = popt  # Extract the optimized parameters
 
     # Plot results
-    x_fit = np.linspace(min(X), max(X), 100)
-    y_fit = gaussian_func(x_fit, A_opt, mu_opt, sigma_opt)
-    fig = plt.figure()
-    plt.scatter(X, Y, label='Measured Data')
-    plt.plot(x_fit, y_fit, label=f'Fit: A = {A_opt:e}, μ = {mu_opt:e}, σ = {sigma_opt:e}', color='red')
-    plt.xlabel('V_fwd')
-    plt.ylabel('I_diff')
-    plt.legend()
-    plt.title('Gaussian Curve Fitting')
-    plt.grid(True)
-    plt.show(block=True)
-    plt.close(fig)
+# =============================================================================
+#     x_fit = np.linspace(min(X), max(X), 100)
+#     y_fit = gaussian_func(x_fit, A_opt, mu_opt, sigma_opt)
+#     fig = plt.figure()
+#     plt.scatter(X, Y, label='Measured Data')
+#     plt.plot(x_fit, y_fit, label=f'Fit: A = {A_opt:e}, μ = {mu_opt:e}, σ = {sigma_opt:e}', color='red')
+#     plt.xlabel('V_fwd')
+#     plt.ylabel('I_diff')
+#     plt.legend()
+#     plt.title('Gaussian Curve Fitting')
+#     plt.grid(True)
+#     plt.show(block=True)
+#     plt.close(fig)
+# =============================================================================
 
     # Print the optimized parameters and their uncertainties
     A_error = float(np.sqrt(pcov[0, 0]))
