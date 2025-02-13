@@ -36,7 +36,7 @@ def remove_linear_drift(dpvDF, popt, perr):
     I_corrected = I_diff - shift_values
 
     # Calculate the Z-score of I_corrected
-    Z_THRESHOLD = 2.5
+    Z_THRESHOLD = 3.2  # default: 2.5, use 3.2 for larger peaks
     mean_I = np.mean(I_corrected)
     std_I = np.std(I_corrected)
     z_scores = (I_corrected - mean_I) / std_I

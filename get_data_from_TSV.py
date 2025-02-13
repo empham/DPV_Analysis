@@ -35,11 +35,12 @@ def get_data_from_TSV():
     DOES: extracts target data from each TSV and saves as numpy 2D array
     OUTPUT: list of numpy 2D arrays with target data
     """
+# @todo Commented out for quick processing, but should be removed after.
+    # DATA_DIR = "C:\\Users\\Public\\My Gamry Data\\02-12-2025\\Redo"
     GAMRY_DEFAULT = find_dir('My Gamry Data', 'C:\\')
     print(f"Hint: the default Gamry data directory is '{GAMRY_DEFAULT}'\n")
 
     DATA_DIR = select_dir(prompt="Enter the path to the directory containing the target data (or press Enter for default './output'): ")
-
 
     dataFiles = [string for string in os.listdir(DATA_DIR) if "DPV" in string]
 

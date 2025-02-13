@@ -16,6 +16,8 @@ from remove_linear_drift import *
 
 if __name__ == '__main__':
     dpvDF_lst = get_data_from_TSV()
+# @todo Commented out for quick processing, but should be removed after.
+    # SAVE_PATH = "C:\\Users\\Public\\My Gamry Data\\02-12-2025\\Redo\\Figures"
     SAVE_PATH = select_dir(prompt="Enter path to save directory for figures (or press Enter for default './output'): ")
 
     for index, dpvDF in enumerate(dpvDF_lst):
@@ -92,6 +94,7 @@ if __name__ == '__main__':
         plt.close('all')
 
         # Check if user wants to continue data analysis
+# @todo Commented out for quick processing, but should be removed after.
         while True:
             choice = input("Continue? (Y/N): ").strip().lower()
             if choice == 'n':
