@@ -25,8 +25,8 @@ if __name__ == '__main__':
 
         # Separate data and convert data type
         to_float = np.vectorize(float)
-        old_V_fwd = to_float(dpvDF[2:-1, 1])
-        old_I_diff = to_float(dpvDF[2:-1, 2])
+        old_V_fwd = to_float(dpvDF[3:-1, 1])
+        old_I_diff = to_float(dpvDF[3:-1, 2])
 
         # Plot results
         x_fit = np.linspace(min(old_V_fwd), max(old_V_fwd), 100)
@@ -37,8 +37,9 @@ if __name__ == '__main__':
         plt.xlabel('V_fwd')
         plt.ylabel('I_diff')
         plt.legend(loc="lower center", bbox_to_anchor=(0.5, -0.35))
-        plt.subplots_adjust(bottom=0.25)      
-        plt.title(f"Linear Fit ({index+1})")
+        plt.subplots_adjust(bottom=0.25)
+        plt.suptitle("Linear Fit", fontsize=14)
+        plt.title(f"{dpvDF[0,0]}", fontsize=10, y=1)
         plt.grid(True)
         plt.show(block=False)
         plt.savefig(SAVE_PATH + f"\\lin_fit_fig_{index+1}")
@@ -49,8 +50,8 @@ if __name__ == '__main__':
         new_dpvDF = remove_linear_drift(dpvDF, popt, perr)
 
         # Separate data and convert data type
-        new_V_fwd = to_float(new_dpvDF[2:-1, 1])
-        new_I_diff = to_float(new_dpvDF[2:-1, 2])
+        new_V_fwd = to_float(new_dpvDF[3:-1, 1])
+        new_I_diff = to_float(new_dpvDF[3:-1, 2])
 
         # Plot new data against old data
         plt.scatter(old_V_fwd, old_I_diff, label='Original Data', alpha=0.6, color='blue')
@@ -59,8 +60,9 @@ if __name__ == '__main__':
         plt.xlabel('V_fwd')
         plt.ylabel('I_diff')
         plt.legend(loc="lower center", bbox_to_anchor=(0.5, -0.35))
-        plt.subplots_adjust(bottom=0.25) 
-        plt.title(f"Comparison of Original vs. Corrected DPV Data ({index+1})")
+        plt.subplots_adjust(bottom=0.25)
+        plt.suptitle("Comparison of Original vs. Corrected DPV Data", fontsize=14)
+        plt.title(f"{dpvDF[0,0]}", fontsize=10, y=1)
         plt.grid(True)
         plt.show(block=False)
         plt.savefig(SAVE_PATH + f"\\corrected_fig_{index+1}")
@@ -80,8 +82,9 @@ if __name__ == '__main__':
         plt.xlabel('V_fwd')
         plt.ylabel('I_diff')
         plt.legend(loc="lower center", bbox_to_anchor=(0.5, -0.35))
-        plt.subplots_adjust(bottom=0.25) 
-        plt.title(f"Gaussian Curve Fitting ({index+1})")
+        plt.subplots_adjust(bottom=0.25)
+        plt.suptitle("Gaussian Curve Fitting", fontsize=14)
+        plt.title(f"{dpvDF[0,0]}", fontsize=10, y=1)
         plt.grid(True)
         plt.show(block=False)
         plt.savefig(SAVE_PATH + f"\\curve_fit_fig_{index+1}")

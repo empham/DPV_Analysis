@@ -25,9 +25,9 @@ def remove_linear_drift(dpvDF, popt, perr):
 
     # Separate data and convert data type
     to_float = np.vectorize(float)
-    points = dpvDF[2:-1, 0]
-    V_fwd = to_float(dpvDF[2:-1, 1])
-    I_diff = to_float(dpvDF[2:-1, 2])
+    points = dpvDF[3:-1, 0]
+    V_fwd = to_float(dpvDF[3:-1, 1])
+    I_diff = to_float(dpvDF[3:-1, 2])
 
     # Remove linear drift using the provided slope (m_opt) and intercept (b_opt)
     m_opt, b_opt = popt  # Unpack slope and intercept for readability
@@ -36,7 +36,7 @@ def remove_linear_drift(dpvDF, popt, perr):
     I_corrected = I_diff - shift_values
 
     # Calculate the Z-score of I_corrected
-    Z_THRESHOLD = 2
+    Z_THRESHOLD = 2.5
     mean_I = np.mean(I_corrected)
     std_I = np.std(I_corrected)
     z_scores = (I_corrected - mean_I) / std_I
@@ -74,11 +74,11 @@ if __name__ == '__main__':
 
         # Separate data and convert data type
         to_float = np.vectorize(float)
-        old_V_fwd = to_float(dpvDF[2:-1, 1])
-        old_I_diff = to_float(dpvDF[2:-1, 2])
+        old_V_fwd = to_float(dpvDF[3:-1, 1])
+        old_I_diff = to_float(dpvDF[3:-1, 2])
 
-        new_V_fwd = to_float(new_dpvDF[2:-1, 1])
-        new_I_diff = to_float(new_dpvDF[2:-1, 2])
+        new_V_fwd = to_float(new_dpvDF[3:-1, 1])
+        new_I_diff = to_float(new_dpvDF[3:-1, 2])
 
         # Plot new data against old data
         plt.scatter(old_V_fwd, old_I_diff, label='Original Data', alpha=0.6, color='blue')

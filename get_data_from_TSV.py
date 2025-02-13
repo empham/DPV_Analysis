@@ -53,6 +53,11 @@ def get_data_from_TSV():
             rawDF = homogenize_2d_list(rawDF, ' ')
             RawDF = np.array(rawDF)
             dpvDF = RawDF[64:, [1, 3, 8]]
+
+            # Insert filename as the first row
+            filename_row = np.array([[file] + [''] * (dpvDF.shape[1] - 1)])  # Adjust size
+            dpvDF = np.vstack((filename_row, dpvDF))
+
             dpvDF_lst.append(dpvDF)
 
     return dpvDF_lst

@@ -35,8 +35,8 @@ def fit_linear_drift(dpvDF):
     """
     # Separate data and convert data type
     to_float = np.vectorize(float)
-    V_fwd = to_float(dpvDF[2:-1, 1])
-    I_diff = to_float(dpvDF[2:-1, 2])
+    V_fwd = to_float(dpvDF[3:-1, 1])
+    I_diff = to_float(dpvDF[3:-1, 2])
 
     # Get coordinates of linear regions
     coords1 = get_2_points_from_plot(V_fwd, I_diff)
@@ -100,8 +100,8 @@ def fit_DPV_signal(dpvDF):
     """
     # Separate data and convert data type
     to_float = np.vectorize(float)
-    V_fwd = to_float(dpvDF[2:-1, 1])
-    I_diff = to_float(dpvDF[2:-1, 2])
+    V_fwd = to_float(dpvDF[3:-1, 1])
+    I_diff = to_float(dpvDF[3:-1, 2])
 
     # Get coordinates of of Gaussian region (signal region of interest)
     coords = get_2_points_from_plot(V_fwd, I_diff)
